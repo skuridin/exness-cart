@@ -4,6 +4,6 @@ require('babel-core/polyfill');
 
 import React from 'react';
 import { render } from 'react-dom';
-import Root from './components/RootComponent';
+import Root from './components/stupid/RootComponent';
 
 render(<Root />, document.getElementById('root'));
