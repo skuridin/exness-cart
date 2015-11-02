@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const webpack = require('webpack');
 const HTMLPlugin = require('html-webpack-plugin');
@@ -25,19 +23,9 @@ module.exports = {
   ],
   module: {
     loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        include: path.join(__dirname, 'src')
-      },
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('css')
-      },
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!sass')
-      }
+      { test: /\.js$/, loader: 'babel', include: path.join(__dirname, 'src') },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('css') },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass') }
     ]
   }
 };
