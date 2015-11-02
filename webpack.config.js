@@ -18,7 +18,10 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new HTMLPlugin({ template: 'src/template.html' }),
+    new HTMLPlugin({
+      template: 'src/template.html',
+      minify: { collapseWhitespace: true }
+    }),
     new ExtractTextPlugin('assets/styles.css')
   ],
   module: {
