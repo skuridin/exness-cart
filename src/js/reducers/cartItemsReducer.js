@@ -1,24 +1,23 @@
-import { Map, List, fromJS } from 'immutable';
+import { fromJS, List, Map } from 'immutable';
 import { ADD_ITEM, REMOVE_ITEM } from '../actions';
 
-let defaultState = localStorage.getItem('cart');
-if (defaultState) {
-  defaultState = fromJS(JSON.parse(defaultState));
-} else {
+let defaultState;
+try {
+  defaultState = fromJS(JSON.parse(localStorage.getItem('cart')));
+} catch (err) {
   defaultState = List();
 }
 
 function addItem(state, action) {
-  let added = false;
   const newState = state.map(item => {
     if (item.get('id') === action.id) {
-      item.amount++;
-      added = true;
       return item.set('amount', item.get('amount') + 1);
     }
     return item;
   });
-  if (!added) return newState.push(Map({ id: action.id, amount: 1 }));
+  if (state.equals(newState)) {
+    return newState.push(Map({ id: action.id, amount: 1 }));
+  }
   return newState;
 }
 
