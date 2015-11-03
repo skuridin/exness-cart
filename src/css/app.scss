@@ -5,3 +5,46 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
+body {
+  background-color: #EEE;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.column {
+  vertical-align: top;
+  display: inline-block;
+  width: 50%;
+  padding: 25px;
+}
+
+.column__title {
+  text-align: center;
+  font-weight: 300;
+}
+
+table {
+  width: 100%;
+  thead {
+    border-bottom: 1px solid #ccc;
+    th {
+      padding: 5px;
+      text-align: left;
+    }
+  }
+  tbody {
+    td {
+      padding: 5px;
+    }
+  }
+}
+
+.goods__action {
+  text-align: right;
+}
