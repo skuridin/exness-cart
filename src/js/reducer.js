@@ -38,17 +38,14 @@ function addItem(state, action) {
 }
 
 function removeItem(state, action) {
-  const newState = Object.assign({}, state);
-  newState.forEach(item => {
-    if (item.id === action.id) {
-      if (item.amount === 1) {
-        delete newState[action.id];
-      } else {
-        item.amount--;
-      }
+  return state.map(item => {
+    if (item.get('id') === action.id) {
+      return item.set('amount', item.get('amount') - 1);
     }
+    return item;
+  }).filter(item => {
+    return item.get('amount') > 0;
   });
-  return newState;
 }
 
 function stableSort(state, key, reverse = false) {
