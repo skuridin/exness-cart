@@ -20,7 +20,8 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new HTMLPlugin({
       template: 'src/template.html',
-      minify: { collapseWhitespace: true }
+      minify: { collapseWhitespace: true },
+      title: 'Exness Cart'
     }),
     new ExtractTextPlugin('assets/styles.css')
   ],
