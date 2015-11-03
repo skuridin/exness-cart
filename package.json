@@ -3,7 +3,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "NODE_ENV=production webpack -p",
+    "build": "NODE_ENV=production webpack --config ./webpack.config.production.js",
     "dev": "node devServer.js"
   },
   "devDependencies": {
