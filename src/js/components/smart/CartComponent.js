@@ -2,12 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import CartTable from '../stupid/CartTableComponent';
+import { removeItem } from '../../actions';
 
 class CartComponent extends React.Component {
+  handleRemove(event) {
+    event.preventDefault();
+    const id = event.currentTarget.dataset.id;
+    this.props.dispatch(removeItem(id));
+  }
   render() {
     return (
       <CartTable goods={this.props.goods}
-                 items={this.props.items} />
+                 items={this.props.items}
+                 handleRemove={this.handleRemove.bind(this)} />
     );
   }
 }
