@@ -45,6 +45,35 @@ table {
   }
 }
 
-.goods__action {
+.table__action {
   text-align: right;
+}
+
+.table__button {
+  background-color: transparent;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: .2em 1em .1em 1em;
+  font-size: 12px;
+  text-transform: uppercase;
+  &:focus {
+    outline: none;
+  }
+}
+
+.table__button--add {
+  background-color: lightgreen;
+  border: 1px solid darken(lightgreen, 10%);
+  &:active {
+    background-color: darken(lightgreen, 10%);
+  }
+}
+
+.table__button--remove {
+  background-color: tomato;
+  border: 1px solid darken(tomato, 10%);
+  color: white;
+  &:active {
+    background-color: darken(tomato, 10%);
+  }
 }

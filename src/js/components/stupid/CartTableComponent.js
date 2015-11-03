@@ -8,8 +8,8 @@ export default function CartTableComponent({ goods, items, handleRemove }) {
         <td>{good.get('title')}</td>
         <td>{good.get('price')}</td>
         <td>{item.get('amount')}</td>
-        <td className="goods__action">
-          <button type="button"
+        <td className="table__action">
+          <button type="button" className="table__button table__button--remove"
                   data-id={item.get('id')}
                   onClick={handleRemove}>Remove</button>
         </td>
