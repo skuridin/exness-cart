@@ -1,6 +1,10 @@
 {
   "rules": {
     "comma-dangle": [2, "never"],
+    "new-cap": 0,
+    "object-curly-spacing": [2, "always"],
+    "space-in-parens": [2, "never"],
+    "arrow-spacing": 2,
   },
   "extends": "airbnb"
 }
