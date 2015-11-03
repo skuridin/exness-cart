@@ -6,7 +6,7 @@ export default function CartTableComponent({ goods, items, handleRemove }) {
     return (
       <tr key={idx}>
         <td>{good.get('title')}</td>
-        <td>{good.get('price')}</td>
+        <td>${good.get('price')}</td>
         <td>{item.get('amount')}</td>
         <td className="table__action">
           <button type="button" className="table__button table__button--remove"
@@ -16,6 +16,10 @@ export default function CartTableComponent({ goods, items, handleRemove }) {
       </tr>
     );
   }).toList();
+  const total = items.reduce((state, item) => {
+    return state + item.get('amount') * goods.get(item.get('id')).get('price');
+  }, 0);
+
   return (
     <table>
       <thead>
@@ -27,6 +31,14 @@ export default function CartTableComponent({ goods, items, handleRemove }) {
         </tr>
       </thead>
       <tbody>{rows}</tbody>
+      <tfoot>
+        <tr>
+          <td>Total:</td>
+          <td>${total}</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tfoot>
     </table>
   );
 }
