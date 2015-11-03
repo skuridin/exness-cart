@@ -25,11 +25,5 @@ CartComponent.propTypes = {
   dispatch: React.PropTypes.func
 };
 
-function selector(state) {
-  return {
-    goods: state.goods,
-    items: state.cartItems
-  };
-}
-
+const selector = ({ goods, cartItems }) => ({ goods, items: cartItems });
 export default connect(selector)(CartComponent);

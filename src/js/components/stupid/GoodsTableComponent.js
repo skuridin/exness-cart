@@ -7,7 +7,8 @@ export default function GoodsTableComponent({ goods, handleAdd }) {
         <td>{item.get('title')}</td>
         <td>${item.get('price')}</td>
         <td className="table__action">
-          <button type="button" className="table__button table__button--add"
+          <button type="button"
+                  className="table__button table__button--add"
                   data-id={item.get('id')}
                   onClick={handleAdd}>Buy</button>
         </td>

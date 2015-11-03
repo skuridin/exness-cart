@@ -1,44 +1,15 @@
 import React from 'react';
+import Head from './CartTableHeadComponent';
+import Body from './CartTableBodyComponent';
+import Foot from './CartTableFootComponent';
 
-export default function CartTableComponent({ goods, items, handleRemove }) {
-  const rows = items.map((item, idx) => {
-    const good = goods.get(item.get('id'));
-    return (
-      <tr key={idx}>
-        <td>{good.get('title')}</td>
-        <td>${good.get('price')}</td>
-        <td>{item.get('amount')}</td>
-        <td className="table__action">
-          <button type="button" className="table__button table__button--remove"
-                  data-id={item.get('id')}
-                  onClick={handleRemove}>Remove</button>
-        </td>
-      </tr>
-    );
-  }).toList();
-  const total = items.reduce((state, item) => {
-    return state + item.get('amount') * goods.get(item.get('id')).get('price');
-  }, 0);
-
+export default function CartTableComponent(props) {
+  const { goods, items, handleRemove, handleSort } = props;
   return (
     <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Amount</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-      <tfoot>
-        <tr>
-          <td>Total:</td>
-          <td>${total}</td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tfoot>
+      <Head handleSort={handleSort} />
+      <Body goods={goods} items={items} handleRemove={handleRemove} />
+      <Foot goods={goods} items={items} />
     </table>
   );
 }
