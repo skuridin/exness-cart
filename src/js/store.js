@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
-import reducer from './reducer';
+import reducers from './reducers';
 
 const saver = store => next => action => {
   const result = next(action);
-  localStorage.setItem('data', JSON.stringify(store.getState().cartItems));
+  localStorage.setItem('cart', JSON.stringify(store.getState().cartItems));
   return result;
 };
 
 const createStoreWithMiddleware = applyMiddleware(saver)(createStore);
-export default createStoreWithMiddleware(reducer);
+export default createStoreWithMiddleware(reducers);
