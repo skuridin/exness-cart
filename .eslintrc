@@ -5,6 +5,7 @@
     "object-curly-spacing": [2, "always"],
     "space-in-parens": [2, "never"],
     "arrow-spacing": 2,
+    "object-shorthand": 2
   },
   "extends": "airbnb"
 }
