@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-import CartTable from '../stupid/CartTableComponent';
-import { removeItem, sort } from '../../actions';
+import Head from '../stupid/CartHeadComponent';
+import Body from '../stupid/CartBodyComponent';
+import Foot from '../stupid/CartFootComponent';
+import { removeItem, sort, save } from '../../actions';
 
 class CartComponent extends React.Component {
   handleRemove(event) {
@@ -15,12 +17,21 @@ class CartComponent extends React.Component {
     const by = event.currentTarget.dataset.by;
     this.props.dispatch(sort(by));
   }
+  handleSave(event) {
+    event.preventDefault();
+    this.props.dispatch(save());
+  }
   render() {
+    const { goods, items } = this.props;
     return (
-      <CartTable goods={this.props.goods}
-                 items={this.props.items}
-                 handleSort={this.handleSort.bind(this)}
-                 handleRemove={this.handleRemove.bind(this)} />
+      <table>
+        <Head handleSort={this.handleSort.bind(this)} />
+        <Body goods={goods} items={items}
+              handleRemove={this.handleRemove.bind(this)} />
+        <Foot goods={goods} items={items}
+              handleSave={this.handleSave.bind(this)}
+              save={this.props.save} />
+      </table>
     );
   }
 }
@@ -28,8 +39,16 @@ class CartComponent extends React.Component {
 CartComponent.propTypes = {
   goods: React.PropTypes.instanceOf(Immutable.Map),
   items: React.PropTypes.instanceOf(Immutable.List),
-  dispatch: React.PropTypes.func
+  dispatch: React.PropTypes.func,
+  save: React.PropTypes.bool
 };
 
-const selector = ({ goods, cartItems }) => ({ goods, items: cartItems });
+function selector(state) {
+  return {
+    goods: state.goods,
+    items: state.cartItems,
+    save: state.save
+  };
+}
+
 export default connect(selector)(CartComponent);
