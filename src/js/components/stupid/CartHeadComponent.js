@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CartTableHeadComponent({ handleSort }) {
+export default function CartHeadComponent({ handleSort }) {
   return (
     <thead>
       <tr>

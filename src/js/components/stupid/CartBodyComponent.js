@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CartTableHeadComponent(props) {
+export default function CartBodyComponent(props) {
   const { goods, items, handleRemove } = props;
   const rows = items.map((item, idx) => {
     const good = goods.get(item.get('id'));

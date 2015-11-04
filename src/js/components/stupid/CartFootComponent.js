@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CartTableHeadComponent(props) {
+export default function CartFootComponent(props) {
   const { goods, items, handleSave, save } = props;
   let saveMessage;
   const total = items.reduce((state, item) => {
