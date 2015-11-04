@@ -24,15 +24,15 @@ export default function sort(state = defaultState, action) {
   switch (action.type) {
   case SORT_BY_TITLE:
     reverse = state.get('reverse');
-    if (state.get('by') === 'title') reverse = !reverse;
+    reverse = (state.get('by') === 'title') ? !reverse : false;
     return state.set('by', 'title').set('reverse', reverse);
   case SORT_BY_PRICE:
     reverse = state.get('reverse');
-    if (state.get('by') === 'price') reverse = !reverse;
+    reverse = (state.get('by') === 'price') ? !reverse : false;
     return state.set('by', 'price').set('reverse', reverse);
   case SORT_BY_AMOUNT:
     reverse = state.get('reverse');
-    if (state.get('by') === 'amount') reverse = !reverse;
+    reverse = (state.get('by') === 'amount') ? !reverse : false;
     return state.set('by', 'amount').set('reverse', reverse);
   default:
     return state;
