@@ -1,15 +1,17 @@
-import { Map } from 'immutable';
+import { Map, fromJS } from 'immutable';
 import { SORT_BY_TITLE, SORT_BY_PRICE, SORT_BY_AMOUNT } from '../actions';
 
 /**
- * Default state
- * @param {Immutable.Map}
+ * Default state from local storage
+ * @param  {String} 'sort'  Data from local storage
  * @return {Immutable.Map}
  */
-const defaultState = Map({
-  by: null,
-  reverse: false
-});
+let defaultState = localStorage.getItem('sort');
+if (defaultState) {
+  defaultState = fromJS(JSON.parse(defaultState));
+} else {
+  defaultState = Map();
+}
 
 /**
  * Sort reducer
