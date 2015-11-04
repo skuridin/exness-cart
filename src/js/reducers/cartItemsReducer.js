@@ -2,13 +2,24 @@ import { fromJS, List, Map } from 'immutable';
 import store from '../store';
 import { ADD_ITEM, REMOVE_ITEM, SORTED } from '../actions';
 
-let defaultState;
-try {
-  defaultState = fromJS(JSON.parse(localStorage.getItem('cart')));
-} catch (err) {
+/**
+ * Default state from local storage
+ * @param  {String} 'cart'  Data from local storage
+ * @return {Immutable.List}
+ */
+let defaultState = localStorage.getItem('cart');
+if (defaultState) {
+  defaultState = fromJS(JSON.parse(defaultState));
+} else {
   defaultState = List();
 }
 
+/**
+ * Add item to the cart
+ * @param {Immutable.List} state  Current state
+ * @param {Object} action         Action
+ * @return {Immutable.List}       New state
+ */
 function addItem(state, action) {
   const newState = state.map(item => {
     if (item.get('id') === action.id) {
@@ -22,6 +33,12 @@ function addItem(state, action) {
   return newState;
 }
 
+/**
+ * Remove item from the cart
+ * @param  {Immutable.List} state   Current state
+ * @param  {Object} action          Action
+ * @return {Immutable.List}         New state
+ */
 function removeItem(state, action) {
   return state.map(item => {
     if (item.get('id') === action.id) {
@@ -33,6 +50,12 @@ function removeItem(state, action) {
   });
 }
 
+/**
+ * Sort cart items by title
+ * @param  {Immutable.List} state   Current state
+ * @param  {Boolean} reverse        Reverse sorting
+ * @return {Immutable.List}         New state
+ */
 function sortByTitle(state, reverse) {
   const goods = store.getState().goods;
   return state
@@ -49,6 +72,12 @@ function sortByTitle(state, reverse) {
     });
 }
 
+/**
+ * Sort cart items by price
+ * @param  {Immatable.List} state   Currenta state
+ * @param  {Boolean} reverse        Reverse sorting
+ * @return {Immutable.List}         New state
+ */
 function sortByPrice(state, reverse) {
   const goods = store.getState().goods;
   return state.map((item, idx) => {
@@ -65,6 +94,12 @@ function sortByPrice(state, reverse) {
   });
 }
 
+/**
+ * Sort cart items by amount
+ * @param  {Immatable.List} state   Current state
+ * @param  {Boolean} reverse        Reverse sorting
+ * @return {Immatable.List}         New state
+ */
 function sortByAmount(state, reverse) {
   return state.map((item, idx) => {
     return item.set('position', idx);
@@ -80,6 +115,12 @@ function sortByAmount(state, reverse) {
   });
 }
 
+/**
+ * Cart items reducer
+ * @param  {Immutable.List}   Default state
+ * @param  {Object} action    Action
+ * @return {Immutable.List}   New state
+ */
 export default function cartItems(state = defaultState, action) {
   switch (action.type) {
   case ADD_ITEM:

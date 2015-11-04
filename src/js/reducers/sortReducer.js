@@ -1,11 +1,22 @@
 import { Map } from 'immutable';
 import { SORT_BY_TITLE, SORT_BY_PRICE, SORT_BY_AMOUNT } from '../actions';
 
+/**
+ * Default state
+ * @param {Immutable.Map}
+ * @return {Immutable.Map}
+ */
 const defaultState = Map({
   by: null,
   reverse: false
 });
 
+/**
+ * Sort reducer
+ * @param  {Immutable.Map} state  Default state
+ * @param  {Object} action        Action
+ * @return {Immutable.Map}        New state
+ */
 export default function sort(state = defaultState, action) {
   let reverse;
   switch (action.type) {
