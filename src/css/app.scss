@@ -58,6 +58,9 @@ table {
   &:focus {
     outline: none;
   }
+  &:active {
+    background-color: #ccc;
+  }
 }
 
 .table__button--add {
