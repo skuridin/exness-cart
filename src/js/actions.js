@@ -4,6 +4,7 @@ export const SORT_BY_TITLE = 'SORT_BY_TITLE';
 export const SORT_BY_PRICE = 'SORT_BY_PRICE';
 export const SORT_BY_AMOUNT = 'SORT_BY_AMOUNT';
 export const SORTED = 'SORTED';
+export const SAVE = 'SAVE';
 import store from './store';
 
 export function addItem(id) {
@@ -28,4 +29,8 @@ export function sort(type) {
   }
   store.dispatch(sortBy(SORT_BY_TITLE));
   return { type: SORTED };
+}
+
+export function save() {
+  return { type: SAVE, status: Date.now() % 2 === 0 };
 }
